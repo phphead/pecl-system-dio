@@ -211,8 +211,9 @@ PHP_FUNCTION(dio_read)
 	data = erealloc(data, res + 1);
 	data[res] = 0;
 
-	RETURN_STRINGL(data, res);
+	zend_string *str = zend_string_init(data, res + 1, 0);
 	efree(data);
+	RETURN_STR(str);
 }
 /* }}} */
 
